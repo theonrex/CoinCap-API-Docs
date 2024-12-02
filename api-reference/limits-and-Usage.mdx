@@ -1,0 +1,21 @@
+---
+title: Limits and Usage
+description: Limits and Usage
+---
+
+CoinCap enforces rate limits to ensure fair usage of the API and to prevent server overload.
+
+### Rate Limits:
+**Without an API Key:** 200 requests per minute
+
+**With an API Key:** 500 requests per minute
+
+### Historical Data:
+Up to 11 years of historical data is available, regardless of whether you're using an API key or not.
+
+### Handling Rate Limits:
+When you exceed the rate limit, you'll receive a 429 Too Many Requests status code.
+
+### How to Handle Rate Limit Errors:
+Make sure your application is designed to handle 429 errors gracefully.
+Implement backoff strategies such as retrying the request after a delay to prevent overloading the server.

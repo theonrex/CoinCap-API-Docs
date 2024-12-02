@@ -1,94 +1,170 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
+    "title": "CoinCap API",
+    "description": "API for accessing cryptocurrency data including assets, rates, exchanges, markets, and candles.",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://virtserver.swaggerhub.com/REXSENDER1/CoinCap/1.0.0",
+      "description": "SwaggerHub API Auto Mocking Server"
+    },
+    {
+      "url": "https://api.coincap.io/v2",
+      "description": "Official CoinCap API Server"
     }
   ],
-  "security": [
+  "tags": [
     {
-      "bearerAuth": []
+      "name": "Asset",
+      "description": "Endpoints related to cryptocurrency data, including details about individual assets."
+    },
+    {
+      "name": "Rates",
+      "description": "Provides exchange rate information for various currencies."
+    },
+    {
+      "name": "Exchanges",
+      "description": "Information about cryptocurrency exchanges, including trading data."
+    },
+    {
+      "name": "Markets",
+      "description": "Details about cryptocurrency markets and trading pairs."
+    },
+    {
+      "name": "Candles",
+      "description": "Historical price data for cryptocurrencies in candlestick format."
     }
   ],
   "paths": {
-    "/plants": {
+    "/assets": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "tags": ["Asset"],
+        "summary": "Retrieve all cryptocurrencies",
+        "description": "Retrieve a list of all available cryptocurrencies along with their key metrics. Optionally, search by asset ID or symbol to narrow down the results.",
         "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "search by asset id (bitcoin) or symbol (BTC)",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "bitcoin"
+            }
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "query with multiple ids=bitcoin,ethereum,monero",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "bitcoin"
+            }
+          },
           {
             "name": "limit",
             "in": "query",
-            "description": "The maximum number of results to return",
+            "description": "Limit the number of results",
+            "required": false,
+            "style": "form",
+            "explode": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "example": 5
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "offset",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "A list of all cryptocurrencies.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique ID of the cryptocurrency."
+                    },
+                    "rank": {
+                      "type": "string",
+                      "description": "The rank of the cryptocurrency by market cap."
+                    },
+                    "symbol": {
+                      "type": "string",
+                      "description": "The trading symbol for the cryptocurrency."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "The full name of the cryptocurrency."
+                    },
+                    "supply": {
+                      "type": "string",
+                      "description": "The circulating supply of the cryptocurrency."
+                    },
+                    "maxSupply": {
+                      "type": "string",
+                      "description": "The maximum supply of the cryptocurrency."
+                    },
+                    "marketCapUsd": {
+                      "type": "string",
+                      "description": "The market capitalization in USD."
+                    },
+                    "volumeUsd24Hr": {
+                      "type": "string",
+                      "description": "The 24-hour trading volume in USD."
+                    },
+                    "priceUsd": {
+                      "type": "string",
+                      "description": "The current price of the cryptocurrency in USD."
+                    },
+                    "changePercent24Hr": {
+                      "type": "string",
+                      "description": "The percentage change in price in the last 24 hours."
+                    },
+                    "vwap24Hr": {
+                      "type": "string",
+                      "description": "The volume-weighted average price in the last 24 hours."
+                    },
+                    "explorer": {
+                      "type": "string",
+                      "description": "A URL to the blockchain explorer for the cryptocurrency."
+                    }
+                  },
                   "items": {
-                    "$ref": "#/components/schemas/Plant"
+                    "type": "object"
                   }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "id": "bitcoin",
+                  "rank": "1",
+                  "symbol": "BTC",
+                  "name": "Bitcoin",
+                  "supply": "19788862.0000000000000000",
+                  "maxSupply": "21000000.0000000000000000",
+                  "marketCapUsd": "1904557171625.0952172577833640",
+                  "volumeUsd24Hr": "12724040223.1452060699561802",
+                  "priceUsd": "96243.8957644504882220",
+                  "changePercent24Hr": "0.9762522061124105"
                 }
               }
             }
@@ -96,32 +172,509 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+    "/assets/{id}": {
+      "get": {
+        "tags": ["Asset"],
+        "summary": "Retrieve asset by ID",
+        "description": "Unique identifier for the cryptocurrency (e.g., bitcoin).",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID of plant to delete",
+            "description": "The unique identifier of the asset",
             "required": true,
+            "style": "simple",
+            "explode": false,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string",
+              "example": "bitcoin"
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
+          "200": {
+            "description": "Detailed information about the cryptocurrency.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/inline_response_200"
+                },
+                "example": {
+                  "id": "bitcoin",
+                  "rank": 1,
+                  "symbol": "BTC",
+                  "name": "Bitcoin",
+                  "supply": "19788862.0000000000000000",
+                  "maxSupply": "21000000.0000000000000000",
+                  "marketCapUsd": "1904557171625.0952172577833640",
+                  "volumeUsd24Hr": "12724040223.1452060699561802",
+                  "priceUsd": "96243.8957644504882220",
+                  "changePercent24Hr": "0.9762522061124105",
+                  "vwap24Hr": "95583.4674577419449477"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assets/{id}/history": {
+      "get": {
+        "tags": ["Asset"],
+        "summary": "Retrieve historical data for a cryptocurrency",
+        "description": "Fetch historical market data for a specific cryptocurrency, including price, market capitalization, and volume over a given time range.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier for the asset",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "bitcoin"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Point-in-time interval for the data",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "enum": ["m1", "m5", "m15", "m30", "h1", "h2", "h6", "h12", "d1"]
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "UNIX timestamp in milliseconds for the start of the range. If         provided, `end` must also be provided.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "UNIX timestamp in milliseconds for the end of the range. If `start`         is provided, `end` must also be provided.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The interval of time for historical data (e.g., daily, hourly)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assets/{id}/markets": {
+      "get": {
+        "tags": ["Asset"],
+        "summary": "Retrieve market information for a specific asset",
+        "description": "This endpoint allows users to get detailed market data for a given asset identified by its `id`.\nIt provides information on exchange details, trading volume, price, and the relationship between base and quote assets.\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The asset ID to fetch market data for (e.g., bitcoin).",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "bitcoin"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of results to return",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "maximum": 2000,
+              "type": "integer",
+              "default": 5
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The index of the first result to return (useful for pagination)",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved market data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rates": {
+      "get": {
+        "tags": ["Rates"],
+        "summary": "Get all rates",
+        "description": "Retrieve a list of all currency rates, including cryptocurrencies and fiat currencies.",
+        "responses": {
+          "200": {
+            "description": "A list of all available currency rates.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_3"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rates/{id}": {
+      "get": {
+        "tags": ["Rates"],
+        "summary": "Get rate by ID",
+        "description": "Retrieve detailed rate information for a specific cryptocurrency or fiat currency using its unique identifier.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier for the asset or fiat currency.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "bitcoin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed rate information for the specified ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_4"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exchanges": {
+      "get": {
+        "tags": ["Exchanges"],
+        "summary": "Get all exchanges",
+        "description": "Retrieve a complete list of all exchanges, including their details and trading information.",
+        "responses": {
+          "200": {
+            "description": "A comprehensive list of all exchanges with relevant details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_5"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exchanges/{id}": {
+      "get": {
+        "tags": ["Exchanges"],
+        "summary": "Get exchange by ID",
+        "description": "Retrieve details of a specific exchange by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier for the exchange.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "kraken"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of the specified exchange.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_6"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/markets": {
+      "get": {
+        "tags": ["Markets"],
+        "summary": "Get market data",
+        "description": "Retrieve a list of markets based on various optional query parameters.",
+        "parameters": [
+          {
+            "name": "exchangeId",
+            "in": "query",
+            "description": "Search by exchange ID.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "poloniex"
+            }
+          },
+          {
+            "name": "baseSymbol",
+            "in": "query",
+            "description": "Returns markets containing the base symbol.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "BTC"
+            }
+          },
+          {
+            "name": "quoteSymbol",
+            "in": "query",
+            "description": "Returns markets containing the quote symbol.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "ETH"
+            }
+          },
+          {
+            "name": "baseId",
+            "in": "query",
+            "description": "Returns markets containing the base ID.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "bitcoin"
+            }
+          },
+          {
+            "name": "quoteId",
+            "in": "query",
+            "description": "Returns markets containing the quote ID.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "ethereum"
+            }
+          },
+          {
+            "name": "assetSymbol",
+            "in": "query",
+            "description": "Returns all assets containing the symbol (base and quote).",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "BTC"
+            }
+          },
+          {
+            "name": "assetId",
+            "in": "query",
+            "description": "Returns all assets containing the ID (base and quote).",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "bitcoin"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results to return.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "example": 5
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for pagination.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of markets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_7"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/candles": {
+      "get": {
+        "tags": ["Candles"],
+        "summary": "Get market candles",
+        "description": "Retrieve historical market data in the form of candles.",
+        "parameters": [
+          {
+            "name": "exchange",
+            "in": "query",
+            "description": "Exchange ID.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "poloniex"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Candle interval (e.g., m1, m5, m15, etc.).",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "h8",
+              "enum": [
+                "m1",
+                "m5",
+                "m15",
+                "m30",
+                "h1",
+                "h2",
+                "h4",
+                "h8",
+                "h12",
+                "d1",
+                "w1"
+              ]
+            }
+          },
+          {
+            "name": "baseId",
+            "in": "query",
+            "description": "Unique identifier for the base asset.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "ethereum"
+            }
+          },
+          {
+            "name": "quoteId",
+            "in": "query",
+            "description": "Unique identifier for the quote asset.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "bitcoin"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Start time in UNIX milliseconds.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "example": 1528410925604
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "End time in UNIX milliseconds.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "example": 1528411045604
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Historical market candles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_8"
                 }
               }
             }
@@ -132,63 +685,406 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
+      "inline_response_200": {
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for asset"
           },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
+          "rank": {
+            "type": "integer",
+            "description": "Rank is in ascending order - this number is directly associated with the market cap, where the highest market cap receives rank 1"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Most common symbol used to identify this asset on an exchange"
+          },
+          "name": {
+            "type": "string",
+            "description": "Proper name for asset"
+          },
+          "supply": {
+            "type": "string",
+            "description": "Available supply for trading"
+          },
+          "maxSupply": {
+            "type": "string",
+            "description": "Total quantity of asset issued"
+          },
+          "marketCapUsd": {
+            "type": "string",
+            "description": "Supply x price"
+          },
+          "volumeUsd24Hr": {
+            "type": "string",
+            "description": "Quantity of trading volume represented in USD over the last 24 hours"
+          },
+          "priceUsd": {
+            "type": "string",
+            "description": "Volume-weighted price based on real-time market data, translated to USD"
+          },
+          "changePercent24Hr": {
+            "type": "string",
+            "description": "The direction and value change in the last 24 hours"
+          },
+          "vwap24Hr": {
+            "type": "string",
+            "description": "Volume Weighted Average Price in the last 24 hours"
           }
         }
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
+      "inline_response_200_1": {
+        "type": "object",
+        "properties": {
+          "priceUsd": {
+            "type": "integer"
           },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
+          "time": {
+            "type": "integer"
+          }
+        }
+      },
+      "inline_response_200_2": {
+        "type": "object",
+        "properties": {
+          "exchangeId": {
+            "type": "string",
+            "description": "A unique identifier for the exchange"
+          },
+          "baseId": {
+            "type": "string",
+            "description": "The unique identifier for the base asset (the asset being purchased)"
+          },
+          "quoteId": {
+            "type": "string",
+            "description": "The unique identifier for the quote asset (the asset used to purchase the base asset)"
+          },
+          "baseSymbol": {
+            "type": "string",
+            "description": "The most common symbol used to identify the base asset"
+          },
+          "quoteSymbol": {
+            "type": "string",
+            "description": "The most common symbol used to identify the quote asset"
+          },
+          "volumeUsd24Hr": {
+            "type": "number",
+            "description": "The volume of the base asset transacted on this market in the last 24 hours (in USD)"
+          },
+          "priceUsd": {
+            "type": "number",
+            "description": "The price of one unit of the base asset, denominated in the quote asset"
+          },
+          "volumePercent": {
+            "type": "number",
+            "description": "The percentage of the total quote asset volume in this market"
+          }
+        }
+      },
+      "inline_response_200_3": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier for the asset or fiat currency.",
+                  "example": "bitcoin"
+                },
+                "symbol": {
+                  "type": "string",
+                  "description": "Common symbol used to represent the asset or fiat currency.",
+                  "example": "BTC"
+                },
+                "currencySymbol": {
+                  "type": "string",
+                  "description": "Symbol used to represent the currency, if applicable.",
+                  "example": "₿"
+                },
+                "rateUsd": {
+                  "type": "string",
+                  "description": "Conversion rate to USD.",
+                  "format": "float",
+                  "example": "30000.00"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Type of currency, either \"fiat\" or \"crypto\".",
+                  "example": "crypto"
+                }
               }
             }
           }
-        ]
+        }
       },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
+      "inline_response_200_4": {
         "type": "object",
         "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier for the asset or fiat currency.",
+                "example": "bitcoin"
+              },
+              "symbol": {
+                "type": "string",
+                "description": "Common symbol used to represent the asset or fiat currency.",
+                "example": "BTC"
+              },
+              "currencySymbol": {
+                "type": "string",
+                "description": "Symbol used to represent the currency, if applicable.",
+                "example": "₿"
+              },
+              "rateUsd": {
+                "type": "string",
+                "description": "Conversion rate to USD.",
+                "format": "float",
+                "example": "30000.00"
+              },
+              "type": {
+                "type": "string",
+                "description": "Type of currency, either \"fiat\" or \"crypto\".",
+                "example": "crypto"
+              }
+            }
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      },
+      "inline_response_200_5": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier for the exchange.",
+                  "example": "kraken"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Proper name of the exchange.",
+                  "example": "Kraken"
+                },
+                "rank": {
+                  "type": "integer",
+                  "description": "Rank based on total exchange volume.",
+                  "example": 1
+                },
+                "percentTotalVolume": {
+                  "type": "string",
+                  "description": "Daily volume percentage relative to all exchanges.",
+                  "example": "5.23"
+                },
+                "volumeUsd": {
+                  "type": "string",
+                  "description": "Daily volume represented in USD.",
+                  "example": "1500000000.00"
+                },
+                "tradingPairs": {
+                  "type": "integer",
+                  "description": "Number of trading pairs offered by the exchange.",
+                  "example": 250
+                },
+                "socket": {
+                  "type": "boolean",
+                  "description": "Indicates if trade socket is available.",
+                  "example": true
+                },
+                "exchangeUrl": {
+                  "type": "string",
+                  "description": "Website URL of the exchange.",
+                  "example": "https://www.kraken.com"
+                },
+                "updated": {
+                  "type": "integer",
+                  "description": "UNIX timestamp (milliseconds) since the information was last updated.",
+                  "example": 1633017600000
+                }
+              }
+            }
+          }
+        }
+      },
+      "inline_response_200_6": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier for the exchange.",
+                "example": "kraken"
+              },
+              "name": {
+                "type": "string",
+                "description": "Proper name of the exchange.",
+                "example": "Kraken"
+              },
+              "rank": {
+                "type": "integer",
+                "description": "Rank based on total exchange volume.",
+                "example": 1
+              },
+              "percentTotalVolume": {
+                "type": "string",
+                "description": "Daily volume percentage relative to all exchanges.",
+                "example": "5.23"
+              },
+              "volumeUsd": {
+                "type": "string",
+                "description": "Daily volume represented in USD.",
+                "example": "1500000000.00"
+              },
+              "tradingPairs": {
+                "type": "integer",
+                "description": "Number of trading pairs offered by the exchange.",
+                "example": 250
+              },
+              "socket": {
+                "type": "boolean",
+                "description": "Indicates if trade socket is available.",
+                "example": true
+              },
+              "exchangeUrl": {
+                "type": "string",
+                "description": "Website URL of the exchange.",
+                "example": "https://www.kraken.com"
+              },
+              "updated": {
+                "type": "integer",
+                "description": "UNIX timestamp (milliseconds) since the information was last updated.",
+                "example": 1633017600000
+              }
+            }
+          }
+        }
+      },
+      "inline_response_200_7": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "exchangeId": {
+                  "type": "string",
+                  "description": "Unique identifier for the exchange.",
+                  "example": "poloniex"
+                },
+                "rank": {
+                  "type": "integer",
+                  "description": "Rank based on market volume on the exchange.",
+                  "example": 1
+                },
+                "baseSymbol": {
+                  "type": "string",
+                  "description": "Symbol for the base asset.",
+                  "example": "BTC"
+                },
+                "baseId": {
+                  "type": "string",
+                  "description": "Unique identifier for the base asset.",
+                  "example": "bitcoin"
+                },
+                "quoteSymbol": {
+                  "type": "string",
+                  "description": "Symbol for the quote asset.",
+                  "example": "ETH"
+                },
+                "quoteId": {
+                  "type": "string",
+                  "description": "Unique identifier for the quote asset.",
+                  "example": "ethereum"
+                },
+                "priceQuote": {
+                  "type": "string",
+                  "description": "Price in quote asset for one unit of the base asset.",
+                  "example": "0.032"
+                },
+                "priceUsd": {
+                  "type": "string",
+                  "description": "Price in USD for one unit of the base asset.",
+                  "example": "30.00"
+                },
+                "volumeUsd24Hr": {
+                  "type": "string",
+                  "description": "24-hour volume in USD.",
+                  "example": "1000000.00"
+                },
+                "percentExchangeVolume": {
+                  "type": "string",
+                  "description": "Percentage of total exchange volume.",
+                  "example": "12.5"
+                },
+                "tradesCount24Hr": {
+                  "type": "integer",
+                  "description": "Number of trades in the last 24 hours.",
+                  "example": 5000
+                },
+                "updated": {
+                  "type": "integer",
+                  "description": "UNIX timestamp (milliseconds) for the last update.",
+                  "example": 1633017600000
+                }
+              }
+            }
+          }
+        }
+      },
+      "inline_response_200_8": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "open": {
+                  "type": "string",
+                  "description": "Price at the start of the time period.",
+                  "example": "0.031"
+                },
+                "high": {
+                  "type": "string",
+                  "description": "Highest price during the time period.",
+                  "example": "0.035"
+                },
+                "low": {
+                  "type": "string",
+                  "description": "Lowest price during the time period.",
+                  "example": "0.030"
+                },
+                "close": {
+                  "type": "string",
+                  "description": "Price at the end of the time period.",
+                  "example": "0.032"
+                },
+                "volume": {
+                  "type": "string",
+                  "description": "Amount of base asset traded during the time period.",
+                  "example": "100"
+                },
+                "period": {
+                  "type": "integer",
+                  "description": "Timestamp for the start of the time period.",
+                  "example": 1528410925604
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

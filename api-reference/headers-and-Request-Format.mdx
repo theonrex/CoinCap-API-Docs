@@ -1,0 +1,28 @@
+---
+title: Headers and Request Format
+description: CoinCap supports the GET HTTP method for all requests. For optimal performance, it's recommended to include specific headers in your requests.
+---
+
+To make requests to the CoinCap API, we use the GET HTTP method. For the best performance and successful data retrieval, it's important to use the correct headers and request format.
+
+### Request Headers:
+  - Purpose: This header tells the server that you can handle compressed response data. By compressing the data (using formats like gzip or deflate), you can reduce bandwidth usage and speed up the loading process.
+  - Example:
+    ```
+    Accept-Encoding: gzip, deflate
+    ```
+### Authorization Header:
+ - Purpose: To authenticate and authorize your request, you need to include an API key in the Authorization header. This API key is used to verify that you're allowed to access the data.
+ - Example:
+   ```
+   Authorization: Bearer <YOUR_API_KEY>
+
+   ```
+### Request Structure:
+ - The CoinCap API expects a GET request with the endpoint and any query parameters. <br/> For example, to get the current price of Bitcoin:
+   ```
+   GET https://api.coincap.io/v2/assets/bitcoin
+
+   ```
+
+

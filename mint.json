@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "COINCAP API",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/coincapwhite.svg",
+    "light": "/logo/coincap.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/logo/coincap.svg",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
@@ -18,12 +18,12 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "https://shapeshift.zendesk.com/hc/en-us/requests/new"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Home",
+    "url": "https://coincap.io/"
   },
   "tabs": [
     {
@@ -33,59 +33,84 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
+      "name": "Methodology",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "https://coincap.io/methodology"
     },
     {
       "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "icon": "square-x-twitter",
+      "url": "https://twitter.com/CoinCap_io"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "development"
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
+      "pages": ["introduction", "quickstart", "use-cases"]
     },
     {
       "group": "API Documentation",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/introduction",
+        "api-reference/request-API-Key",
+        "api-reference/limits-and-Usage",
+        "api-reference/headers-and-Request-Format",
+        "api-reference/codes-and-Error-Responses",
+        "api-reference/available-Endpoints"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Asset",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/asset/all-crypto",
+        "api-reference/endpoint/asset/assets",
+        "api-reference/endpoint/asset/history",
+        "api-reference/endpoint/asset/retrieve-market-information"
+      ]
+    },
+    {
+      "group": "Candle",
+      "pages": ["api-reference/endpoint/candles/get-market-candles"]
+    },
+    {
+      "group": "Exchanges",
+      "pages": [
+        "api-reference/endpoint/exchanges/get-all-exchanges",
+        "api-reference/endpoint/exchanges/get-exchange-by-id"
+      ]
+    },
+    {
+      "group": "Markets",
+      "pages": ["api-reference/endpoint/markets/get-market-data"]
+    },
+    {
+      "group": "Rates",
+      "pages": [
+        "api-reference/endpoint/rates/get-all-rates",
+        "api-reference/endpoint/rates/get-rate-by-id"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "x": "https://twitter.com/CoinCap_io",
+    "github": "https://github.com/theonrex/CoinCap-API-Docs"
+  },
+  "footer": {
+    "footerLinksColumns": [
+      {
+        "title": "Product",
+        "links": [
+          { "name": "Features", "url": "/features" },
+          { "name": "Pricing", "url": "/pricing" }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          { "name": "About Us", "url": "/about" },
+          { "name": "Blog", "url": "https://blog.company.com" }
+        ]
+      }
+    ]
   }
 }

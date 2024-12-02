@@ -1,0 +1,71 @@
+---
+title: Available Endpoints
+description: The CoinCap API offers several endpoints for different use cases. Below is a high-level overview of some of the most commonly used ones
+---
+
+### Asset Data Endpoints:
+
+<CardGroup cols={2}>
+  <Card title="GET /assets" icon="square-1" href="/api-reference/endpoint/asset/assets">
+    List all assets with data like price, volume, and supply.
+  </Card>
+  <Card title="GET /assets/{id}" icon="square-2" href="/api-reference/endpoint/asset/all-crypto">
+    Retrieve detailed data for a specific asset.
+  </Card>
+  <Card title="GET /assets/{id}/history" icon="square-3" href="/api-reference/endpoint/asset/history">
+    Get historical market data for a specific asset.
+  </Card>
+  <Card title="GET /assets/{id}/market" icon="square-4" href="/api-reference/endpoint/asset/retrieve-market-information">
+    Retrieve detailed market information for a specific asset.
+  </Card>
+</CardGroup>
+
+### Candle Endpoints
+
+<CardGroup cols={2}>
+  <Card title="GET /candles" icon="square-1" href="/api-reference/endpoint/candles">
+    Fetch available candle data for supported markets.
+  </Card>
+  <Card title="GET /candles/market" icon="square-2" href="/api-reference/endpoint/candles/get-market-candles">
+    Retrieve candle data for a specific market.
+  </Card>
+</CardGroup>
+
+### Exchange Endpoints
+
+<CardGroup cols={2}>
+  <Card title="GET /exchanges" icon="square-1" href="/api-reference/endpoint/exchanges">
+    List all exchanges and their details.
+  </Card>
+  <Card title="GET /exchanges/all" icon="square-2" href="/api-reference/endpoint/exchanges/get-all-exchanges">
+    Retrieve information about all available exchanges.
+  </Card>
+  <Card title="GET /exchanges/{id}" icon="square-3" href="/api-reference/endpoint/exchanges/get-exchange-by-id">
+    Fetch detailed information for a specific exchange.
+  </Card>
+</CardGroup>
+
+### Market Endpoints
+
+<CardGroup cols={2}>
+  <Card title="GET /markets" icon="square-1" href="/api-reference/endpoint/markets">
+    Retrieve general market data for all assets.
+  </Card>
+  <Card title="GET /markets/data" icon="square-2" href="/api-reference/endpoint/markets/get-market-data">
+    Get detailed market data for specific markets.
+  </Card>
+</CardGroup>
+
+### Rates Endpoints
+
+<CardGroup cols={2}>
+  <Card title="GET /rates" icon="square-1" href="/api-reference/endpoint/rates">
+    List all available currency rates.
+  </Card>
+  <Card title="GET /rates/all" icon="square-2" href="/api-reference/endpoint/rates/get-all-rates">
+    Retrieve all currency rates data.
+  </Card>
+  <Card title="GET /rates/{id}" icon="square-3" href="/api-reference/endpoint/rates/get-rate-by-id">
+    Fetch details for a specific currency rate.
+  </Card>
+</CardGroup>

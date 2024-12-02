@@ -1,0 +1,22 @@
+---
+title: Codes and Error Responses
+description: The CoinCap API uses standard HTTP status codes to indicate the success or failure of your requests.
+---
+
+### Success (200 OK):
+    - The request was successful, and the response contains the requested data.
+
+### Client Errors (400-417):
+    - 400 Bad Request: Your request is malformed or missing required parameters.
+    - 401 Unauthorized: You did not provide a valid API key.
+    - 404 Not Found: The requested resource does not exist.
+    - 429 Too Many Requests: You have exceeded the rate limit.
+
+### Common Client Errors:
+    - 'limit exceeds 2000': Your request exceeds the maximum allowed number of results (2000). Reduce the limit.
+    - 'missing exchange': You need to specify the exchange in your request.
+    - 'missing interval': Include an interval parameter such as m1, h1, or d1.
+
+### Server Errors (500-505):
+    - 500 Internal Server Error: Something went wrong on CoinCap's end. Please try again later.
+    - 503 Service Unavailable: The service is temporarily down for maintenance.
