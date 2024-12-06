@@ -3,12 +3,12 @@
   "info": {
     "title": "CoinCap API",
     "description": "API for accessing cryptocurrency data including assets, rates, exchanges, markets, and candles.",
-    "version": "1.0.0"
+    "version": "1"
   },
   "servers": [
     {
-      "url": "https://virtserver.swaggerhub.com/REXSENDER1/CoinCap/1.0.0",
-      "description": "SwaggerHub API Auto Mocking Server"
+      "url": "https://virtserver.swaggerhub.com/REXSENDER1/CoinCap/1",
+      "description": "SwaggerHub API Auto Mocking"
     },
     {
       "url": "https://api.coincap.io/v2",
@@ -99,7 +99,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
+                  "type": "object",
                   "properties": {
                     "id": {
                       "type": "string",
@@ -788,35 +788,7 @@
           "data": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "description": "Unique identifier for the asset or fiat currency.",
-                  "example": "bitcoin"
-                },
-                "symbol": {
-                  "type": "string",
-                  "description": "Common symbol used to represent the asset or fiat currency.",
-                  "example": "BTC"
-                },
-                "currencySymbol": {
-                  "type": "string",
-                  "description": "Symbol used to represent the currency, if applicable.",
-                  "example": "₿"
-                },
-                "rateUsd": {
-                  "type": "string",
-                  "description": "Conversion rate to USD.",
-                  "format": "float",
-                  "example": "30000.00"
-                },
-                "type": {
-                  "type": "string",
-                  "description": "Type of currency, either \"fiat\" or \"crypto\".",
-                  "example": "crypto"
-                }
-              }
+              "$ref": "#/components/schemas/inline_response_200_3_data"
             }
           }
         }
@@ -825,35 +797,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string",
-                "description": "Unique identifier for the asset or fiat currency.",
-                "example": "bitcoin"
-              },
-              "symbol": {
-                "type": "string",
-                "description": "Common symbol used to represent the asset or fiat currency.",
-                "example": "BTC"
-              },
-              "currencySymbol": {
-                "type": "string",
-                "description": "Symbol used to represent the currency, if applicable.",
-                "example": "₿"
-              },
-              "rateUsd": {
-                "type": "string",
-                "description": "Conversion rate to USD.",
-                "format": "float",
-                "example": "30000.00"
-              },
-              "type": {
-                "type": "string",
-                "description": "Type of currency, either \"fiat\" or \"crypto\".",
-                "example": "crypto"
-              }
-            }
+            "$ref": "#/components/schemas/inline_response_200_3_data"
           }
         }
       },
@@ -863,54 +807,7 @@
           "data": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "description": "Unique identifier for the exchange.",
-                  "example": "kraken"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "Proper name of the exchange.",
-                  "example": "Kraken"
-                },
-                "rank": {
-                  "type": "integer",
-                  "description": "Rank based on total exchange volume.",
-                  "example": 1
-                },
-                "percentTotalVolume": {
-                  "type": "string",
-                  "description": "Daily volume percentage relative to all exchanges.",
-                  "example": "5.23"
-                },
-                "volumeUsd": {
-                  "type": "string",
-                  "description": "Daily volume represented in USD.",
-                  "example": "1500000000.00"
-                },
-                "tradingPairs": {
-                  "type": "integer",
-                  "description": "Number of trading pairs offered by the exchange.",
-                  "example": 250
-                },
-                "socket": {
-                  "type": "boolean",
-                  "description": "Indicates if trade socket is available.",
-                  "example": true
-                },
-                "exchangeUrl": {
-                  "type": "string",
-                  "description": "Website URL of the exchange.",
-                  "example": "https://www.kraken.com"
-                },
-                "updated": {
-                  "type": "integer",
-                  "description": "UNIX timestamp (milliseconds) since the information was last updated.",
-                  "example": 1633017600000
-                }
-              }
+              "$ref": "#/components/schemas/inline_response_200_5_data"
             }
           }
         }
@@ -919,54 +816,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string",
-                "description": "Unique identifier for the exchange.",
-                "example": "kraken"
-              },
-              "name": {
-                "type": "string",
-                "description": "Proper name of the exchange.",
-                "example": "Kraken"
-              },
-              "rank": {
-                "type": "integer",
-                "description": "Rank based on total exchange volume.",
-                "example": 1
-              },
-              "percentTotalVolume": {
-                "type": "string",
-                "description": "Daily volume percentage relative to all exchanges.",
-                "example": "5.23"
-              },
-              "volumeUsd": {
-                "type": "string",
-                "description": "Daily volume represented in USD.",
-                "example": "1500000000.00"
-              },
-              "tradingPairs": {
-                "type": "integer",
-                "description": "Number of trading pairs offered by the exchange.",
-                "example": 250
-              },
-              "socket": {
-                "type": "boolean",
-                "description": "Indicates if trade socket is available.",
-                "example": true
-              },
-              "exchangeUrl": {
-                "type": "string",
-                "description": "Website URL of the exchange.",
-                "example": "https://www.kraken.com"
-              },
-              "updated": {
-                "type": "integer",
-                "description": "UNIX timestamp (milliseconds) since the information was last updated.",
-                "example": 1633017600000
-              }
-            }
+            "$ref": "#/components/schemas/inline_response_200_5_data"
           }
         }
       },
@@ -976,69 +826,7 @@
           "data": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "exchangeId": {
-                  "type": "string",
-                  "description": "Unique identifier for the exchange.",
-                  "example": "poloniex"
-                },
-                "rank": {
-                  "type": "integer",
-                  "description": "Rank based on market volume on the exchange.",
-                  "example": 1
-                },
-                "baseSymbol": {
-                  "type": "string",
-                  "description": "Symbol for the base asset.",
-                  "example": "BTC"
-                },
-                "baseId": {
-                  "type": "string",
-                  "description": "Unique identifier for the base asset.",
-                  "example": "bitcoin"
-                },
-                "quoteSymbol": {
-                  "type": "string",
-                  "description": "Symbol for the quote asset.",
-                  "example": "ETH"
-                },
-                "quoteId": {
-                  "type": "string",
-                  "description": "Unique identifier for the quote asset.",
-                  "example": "ethereum"
-                },
-                "priceQuote": {
-                  "type": "string",
-                  "description": "Price in quote asset for one unit of the base asset.",
-                  "example": "0.032"
-                },
-                "priceUsd": {
-                  "type": "string",
-                  "description": "Price in USD for one unit of the base asset.",
-                  "example": "30.00"
-                },
-                "volumeUsd24Hr": {
-                  "type": "string",
-                  "description": "24-hour volume in USD.",
-                  "example": "1000000.00"
-                },
-                "percentExchangeVolume": {
-                  "type": "string",
-                  "description": "Percentage of total exchange volume.",
-                  "example": "12.5"
-                },
-                "tradesCount24Hr": {
-                  "type": "integer",
-                  "description": "Number of trades in the last 24 hours.",
-                  "example": 5000
-                },
-                "updated": {
-                  "type": "integer",
-                  "description": "UNIX timestamp (milliseconds) for the last update.",
-                  "example": 1633017600000
-                }
-              }
+              "$ref": "#/components/schemas/inline_response_200_7_data"
             }
           }
         }
@@ -1049,40 +837,189 @@
           "data": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "open": {
-                  "type": "string",
-                  "description": "Price at the start of the time period.",
-                  "example": "0.031"
-                },
-                "high": {
-                  "type": "string",
-                  "description": "Highest price during the time period.",
-                  "example": "0.035"
-                },
-                "low": {
-                  "type": "string",
-                  "description": "Lowest price during the time period.",
-                  "example": "0.030"
-                },
-                "close": {
-                  "type": "string",
-                  "description": "Price at the end of the time period.",
-                  "example": "0.032"
-                },
-                "volume": {
-                  "type": "string",
-                  "description": "Amount of base asset traded during the time period.",
-                  "example": "100"
-                },
-                "period": {
-                  "type": "integer",
-                  "description": "Timestamp for the start of the time period.",
-                  "example": 1528410925604
-                }
-              }
+              "$ref": "#/components/schemas/inline_response_200_8_data"
             }
+          }
+        }
+      },
+      "inline_response_200_3_data": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the asset or fiat currency.",
+            "example": "bitcoin"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Common symbol used to represent the asset or fiat currency.",
+            "example": "BTC"
+          },
+          "currencySymbol": {
+            "type": "string",
+            "description": "Symbol used to represent the currency, if applicable.",
+            "example": "₿"
+          },
+          "rateUsd": {
+            "type": "string",
+            "description": "Conversion rate to USD.",
+            "format": "float",
+            "example": "30000.00"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of currency, either \"fiat\" or \"crypto\".",
+            "example": "crypto"
+          }
+        }
+      },
+      "inline_response_200_5_data": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the exchange.",
+            "example": "kraken"
+          },
+          "name": {
+            "type": "string",
+            "description": "Proper name of the exchange.",
+            "example": "Kraken"
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Rank based on total exchange volume.",
+            "example": 1
+          },
+          "percentTotalVolume": {
+            "type": "string",
+            "description": "Daily volume percentage relative to all exchanges.",
+            "example": "5.23"
+          },
+          "volumeUsd": {
+            "type": "string",
+            "description": "Daily volume represented in USD.",
+            "example": "1500000000.00"
+          },
+          "tradingPairs": {
+            "type": "integer",
+            "description": "Number of trading pairs offered by the exchange.",
+            "example": 250
+          },
+          "socket": {
+            "type": "boolean",
+            "description": "Indicates if trade socket is available.",
+            "example": true
+          },
+          "exchangeUrl": {
+            "type": "string",
+            "description": "Website URL of the exchange.",
+            "example": "https://www.kraken.com"
+          },
+          "updated": {
+            "type": "integer",
+            "description": "UNIX timestamp (milliseconds) since the information was last updated.",
+            "example": 1633017600000
+          }
+        }
+      },
+      "inline_response_200_7_data": {
+        "type": "object",
+        "properties": {
+          "exchangeId": {
+            "type": "string",
+            "description": "Unique identifier for the exchange.",
+            "example": "poloniex"
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Rank based on market volume on the exchange.",
+            "example": 1
+          },
+          "baseSymbol": {
+            "type": "string",
+            "description": "Symbol for the base asset.",
+            "example": "BTC"
+          },
+          "baseId": {
+            "type": "string",
+            "description": "Unique identifier for the base asset.",
+            "example": "bitcoin"
+          },
+          "quoteSymbol": {
+            "type": "string",
+            "description": "Symbol for the quote asset.",
+            "example": "ETH"
+          },
+          "quoteId": {
+            "type": "string",
+            "description": "Unique identifier for the quote asset.",
+            "example": "ethereum"
+          },
+          "priceQuote": {
+            "type": "string",
+            "description": "Price in quote asset for one unit of the base asset.",
+            "example": "0.032"
+          },
+          "priceUsd": {
+            "type": "string",
+            "description": "Price in USD for one unit of the base asset.",
+            "example": "30.00"
+          },
+          "volumeUsd24Hr": {
+            "type": "string",
+            "description": "24-hour volume in USD.",
+            "example": "1000000.00"
+          },
+          "percentExchangeVolume": {
+            "type": "string",
+            "description": "Percentage of total exchange volume.",
+            "example": "12.5"
+          },
+          "tradesCount24Hr": {
+            "type": "integer",
+            "description": "Number of trades in the last 24 hours.",
+            "example": 5000
+          },
+          "updated": {
+            "type": "integer",
+            "description": "UNIX timestamp (milliseconds) for the last update.",
+            "example": 1633017600000
+          }
+        }
+      },
+      "inline_response_200_8_data": {
+        "type": "object",
+        "properties": {
+          "open": {
+            "type": "string",
+            "description": "Price at the start of the time period.",
+            "example": "0.031"
+          },
+          "high": {
+            "type": "string",
+            "description": "Highest price during the time period.",
+            "example": "0.035"
+          },
+          "low": {
+            "type": "string",
+            "description": "Lowest price during the time period.",
+            "example": "0.030"
+          },
+          "close": {
+            "type": "string",
+            "description": "Price at the end of the time period.",
+            "example": "0.032"
+          },
+          "volume": {
+            "type": "string",
+            "description": "Amount of base asset traded during the time period.",
+            "example": "100"
+          },
+          "period": {
+            "type": "integer",
+            "description": "Timestamp for the start of the time period.",
+            "example": 1528410925604
           }
         }
       }
