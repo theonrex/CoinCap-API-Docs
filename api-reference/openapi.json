@@ -7,12 +7,17 @@
   },
   "servers": [
     {
-      "url": "https://virtserver.swaggerhub.com/REXSENDER1/CoinCap/1",
-      "description": "SwaggerHub API Auto Mocking"
-    },
-    {
       "url": "https://api.coincap.io/v2",
       "description": "Official CoinCap API Server"
+    },
+    {
+      "url": "https://virtserver.swaggerhub.com/REXSENDER1/CoinCap/1",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
     }
   ],
   "tags": [
@@ -52,8 +57,7 @@
             "style": "form",
             "explode": true,
             "schema": {
-              "type": "string",
-              "example": "bitcoin"
+              "type": "string"
             }
           },
           {
@@ -64,8 +68,7 @@
             "style": "form",
             "explode": true,
             "schema": {
-              "type": "string",
-              "example": "bitcoin"
+              "type": "string"
             }
           },
           {
@@ -76,8 +79,7 @@
             "style": "form",
             "explode": true,
             "schema": {
-              "type": "integer",
-              "example": 5
+              "type": "integer"
             }
           },
           {
@@ -88,8 +90,7 @@
             "style": "form",
             "explode": true,
             "schema": {
-              "type": "integer",
-              "example": 1
+              "type": "integer"
             }
           }
         ],
@@ -99,7 +100,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "array",
                   "properties": {
                     "id": {
                       "type": "string",
@@ -169,7 +170,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/assets/{id}": {
@@ -215,7 +221,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/assets/{id}/history": {
@@ -359,7 +370,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/rates/{id}": {
@@ -411,7 +427,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/exchanges/{id}": {
@@ -573,7 +594,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/candles": {
@@ -679,7 +705,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },
@@ -1022,6 +1053,12 @@
             "example": 1528410925604
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   }
