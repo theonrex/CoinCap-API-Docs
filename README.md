@@ -1,32 +1,43 @@
-# Mintlify Starter Kit
+```markdown
+# Coincap API Documentation
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+This project provides comprehensive API documentation for accessing cryptocurrency and market-related data. It is designed for developers who want to integrate crypto features such as asset details, rates, exchanges, and historical data into their applications.
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+---
 
-### Development
+## Features
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+- **Asset Data**: Retrieve information about cryptocurrencies, including prices, market cap, and supply.
+- **Market Data**: Access market-specific information for assets, including exchange details and trading volumes.
+- **Rates**: Get a comprehensive list of exchange rates for cryptocurrencies and fiat currencies.
+- **Exchanges**: Fetch details about all exchanges, including supported assets and trading pairs.
+- **Historical Data**: Access past performance and trends for specific assets.
 
+---
+
+## Getting Started
+
+### Prerequisites
+To use the API, ensure you have the following:
+- A valid API key (optional).
+- Access to API documentation for endpoint details.
+
+### Example Request
+```bash
+curl -X GET "https://api.example.com/assets/bitcoin" -H "Authorization: Bearer YOUR_API_KEY"
 ```
-npm i -g mintlify
+
+### Response Example
+```json
+{
+  "id": "bitcoin",
+  "rank": 1,
+  "symbol": "BTC",
+  "name": "Bitcoin",
+  "priceUsd": "50000.00"
+}
 ```
 
-Run the following command at the root of your documentation (where mint.json is)
+## Contributing
 
-```
-mintlify dev
-```
-
-### Publishing Changes
-
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
-
-#### Troubleshooting
-
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `mint.json`
+Contributions are welcome! Feel free to submit issues or pull requests to enhance the API documentation.
